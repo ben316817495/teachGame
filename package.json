@@ -12,7 +12,6 @@
     "type": "git",
     "url": "https://git.oschina.net/mcbaby/v-teach.git",
     "webpack": "webpack --config webpack.config.js --progress --display-modules --colors --display-reasons "
-
   },
   "author": "",
   "license": "ISC",
