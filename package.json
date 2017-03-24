@@ -1,0 +1,25 @@
+{
+  "name": "phasergame",
+  "version": "1.0.0",
+  "description": "",
+  "main": "http.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node http.js",
+    "webpack": "webpack --config webpack.config.js --progress --display-modules --colors --display-reasons"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.oschina.net/mcbaby/v-teach.git",
+    "webpack": "webpack --config webpack.config.js --progress --display-modules --colors --display-reasons "
+
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.27.3",
+    "html-webpack-plugin": "^2.28.0",
+    "style-loader": "^0.16.0",
+    "webpack": "^2.3.1"
+  }
+}

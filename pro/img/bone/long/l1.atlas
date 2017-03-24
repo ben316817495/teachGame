@@ -1,0 +1,82 @@
+
+l1.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+body
+  rotate: false
+  xy: 2, 2
+  size: 328, 380
+  orig: 328, 380
+  offset: 0, 0
+  index: -1
+h_left
+  rotate: false
+  xy: 2, 384
+  size: 378, 379
+  orig: 378, 379
+  offset: 0, 0
+  index: -1
+h_right
+  rotate: false
+  xy: 581, 524
+  size: 319, 262
+  orig: 319, 262
+  offset: 0, 0
+  index: -1
+head-bottom
+  rotate: false
+  xy: 332, 126
+  size: 135, 79
+  orig: 135, 79
+  offset: 0, 0
+  index: -1
+head-top
+  rotate: true
+  xy: 332, 207
+  size: 175, 172
+  orig: 175, 172
+  offset: 0, 0
+  index: -1
+l_hand
+  rotate: true
+  xy: 581, 428
+  size: 94, 317
+  orig: 94, 317
+  offset: 0, 0
+  index: -1
+l_zhi
+  rotate: false
+  xy: 962, 897
+  size: 50, 102
+  orig: 50, 102
+  offset: 0, 0
+  index: -1
+q_left
+  rotate: true
+  xy: 572, 788
+  size: 211, 388
+  orig: 211, 388
+  offset: 0, 0
+  index: -1
+q_right
+  rotate: false
+  xy: 382, 401
+  size: 197, 362
+  orig: 197, 362
+  offset: 0, 0
+  index: -1
+r_zhi
+  rotate: true
+  xy: 332, 55
+  size: 69, 137
+  orig: 69, 137
+  offset: 0, 0
+  index: -1
+yinying
+  rotate: false
+  xy: 2, 765
+  size: 568, 234
+  orig: 568, 234
+  offset: 0, 0
+  index: -1
