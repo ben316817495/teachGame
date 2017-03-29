@@ -51,9 +51,15 @@ $(document).ready(function(){
 	    	game.load.image('bg_darkDoor','img/darkDoor1.jpg');
 	    	game.load.image('bg_darkDoor_star','img/darkDoor2.jpg');
 	    	game.load.image('bg_darkDoor_men','img/darkDoor.png');
+	    	game.load.image('bg_darkDoor_men2','img/WechatIMG.png');
 	    	game.load.image('bg_darkDoor_moon','img/darkDoor_moon.png');
 	    	game.load.spritesheet('anHeiLight', 'img/ui_xuanfu1.png',300,350);//29.2kb
 	    	game.load.spritesheet('fireSprites','img/ui_xuanfu2.png',80,80);//371kb
+
+	    	game.load.image('bg_darkDoorbg','img/darkDoorbg.png');
+	    	game.load.image('bg_darkDoor_red','WechatIMG.png');
+
+	    	game.load.image('bg_hill','img/hill.png');
 
 	    	game.load.onFileComplete.add(function(progress){
 	            
@@ -85,7 +91,8 @@ $(document).ready(function(){
 		this.create = function(){
 			game.world.setBounds(0,0,gameWidth,gameHeight);
 
-				loginBg = game.add.tileSprite(0,0,50000,gameHeight,'bg_darkDoor');
+				//loginBg = game.add.tileSprite(0,0,50000,gameHeight,'bg_darkDoor');
+				loginBg = game.add.tileSprite(0,0,50000,gameHeight,'bg_darkDoorbg');
 				loginBg.scale.set(1);
 
 				// loginBg_star = game.add.tileSprite(0,0,50000,337,'bg_darkDoor_star');
@@ -94,9 +101,15 @@ $(document).ready(function(){
 			// 	mapBgImg3 = game.add.tileSprite(0,195,800,200,'map1-3');
 			// mapBgImg3.scale.set(0.67);
 
+			//var bg_darkDoor_men =game.add.image(310,370,'bg_darkDoor_men');
 
-			var bg_darkDoor_men =game.add.image(310,370,'bg_darkDoor_men');
-				//bg_darkDoor_men.scale.set(1.5);
+			
+
+
+			var bg_hill =game.add.image(0,100,'bg_hill');	
+				//bg_hill.scale.set(1.5);
+			var bg_darkDoor_men =game.add.image(310,370,'bg_darkDoor_men2');
+			//bg_darkDoor_men.scale.set(1.1);
 
 			var anHeiLight = game.add.sprite(550, 410, 'anHeiLight');
 				//anHeiLight.scale.set(1.3);
