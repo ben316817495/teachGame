@@ -46,20 +46,23 @@ $(document).ready(function(){
 
 	    	game.load.spine('longImg','img/bone/long/l1.json');
 	    	game.load.spine('longWBImg','img/bone/wb/wb.json');
-		   // game.load.image('gameBtn','img/bone/long/l1.png');
 
-	    	game.load.image('bg_darkDoor','img/darkDoor1.jpg');
-	    	game.load.image('bg_darkDoor_star','img/darkDoor2.jpg');
-	    	game.load.image('bg_darkDoor_men','img/darkDoor.png');
-	    	game.load.image('bg_darkDoor_men2','img/WechatIMG.png');
-	    	game.load.image('bg_darkDoor_moon','img/darkDoor_moon.png');
+	    	// game.load.image('bg_darkDoor','img/darkDoor1.jpg');
+	    	// game.load.image('bg_darkDoor_star','img/darkDoor2.jpg');
+	    	// game.load.image('bg_darkDoor_moon','img/darkDoor_moon.png');
 	    	game.load.spritesheet('anHeiLight', 'img/ui_xuanfu1.png',300,350);//29.2kb
 	    	game.load.spritesheet('fireSprites','img/ui_xuanfu2.png',80,80);//371kb
 
-	    	game.load.image('bg_darkDoorbg','img/darkDoorbg.png');
-	    	game.load.image('bg_darkDoor_red','WechatIMG.png');
+	    	
 
-	    	game.load.image('bg_hill','img/hill.png');
+
+	    	//首页新背景加载
+	    	game.load.image('index_bg_img','img/new/index_bg.png');
+	    	game.load.image('index_centerDoor_img','img/new/centerDoor.png');
+	    	game.load.image('index_leftBottom_img','img/new/leftBottom.png');
+	    	game.load.image('index_rightBottom_img','img/new/rightBottom.png');
+
+
 
 	    	game.load.onFileComplete.add(function(progress){
 	            
@@ -92,43 +95,38 @@ $(document).ready(function(){
 			game.world.setBounds(0,0,gameWidth,gameHeight);
 
 				//loginBg = game.add.tileSprite(0,0,50000,gameHeight,'bg_darkDoor');
-				loginBg = game.add.tileSprite(0,0,50000,gameHeight,'bg_darkDoorbg');
+				loginBg = game.add.tileSprite(0,0,50000,gameHeight,'index_bg_img');
 				loginBg.scale.set(1);
 
-				// loginBg_star = game.add.tileSprite(0,0,50000,337,'bg_darkDoor_star');
-				// loginBg_star.scale.set(1);
+			var indexLeftBottomImg = game.add.image(0,300,'index_leftBottom_img');
 
-			// 	mapBgImg3 = game.add.tileSprite(0,195,800,200,'map1-3');
-			// mapBgImg3.scale.set(0.67);
+			var indexRightBottomImg = game.add.image(1100,520,'index_rightBottom_img');
+			
+			var indexCenterDoorImg = game.add.image(80,380,'index_centerDoor_img');
 
-			//var bg_darkDoor_men =game.add.image(310,370,'bg_darkDoor_men');
 
 			
 
 
-			var bg_hill =game.add.image(0,100,'bg_hill');	
-				//bg_hill.scale.set(1.5);
-			var bg_darkDoor_men =game.add.image(310,370,'bg_darkDoor_men2');
-			//bg_darkDoor_men.scale.set(1.1);
 
-			var anHeiLight = game.add.sprite(550, 410, 'anHeiLight');
+			var anHeiLight = game.add.sprite(580, 410, 'anHeiLight');
 				//anHeiLight.scale.set(1.3);
    				anHeiLight.animations.add('loadImg_anHeiLight',[0,1 ,2, 3, 4,5,6,7,8,9,10,11]);
    				anHeiLight.play('loadImg_anHeiLight',10, true);
 
-   			var fireSprites = game.add.sprite(470, 619, 'fireSprites');
+   			var fireSprites = game.add.sprite(495, 635, 'fireSprites');
    				fireSprites.animations.add('loadImg_fireSprites',[11,10,9,8,7,6,5,4,3,2,1,0]);
    				fireSprites.play('loadImg_fireSprites', 10, true);
 
-   			var fireSprites = game.add.sprite(840, 618, 'fireSprites');
+   			var fireSprites = game.add.sprite(880, 630, 'fireSprites');
    				fireSprites.animations.add('loadImg_fireSprites',[11,10,9,8,7,6,5,4,3,2,1,0]);
    				fireSprites.play('loadImg_fireSprites', 10, true);
    			//龙尾巴
-   			var longWBImg = game.add.spine(330, 770, "longWBImg");
+   			var longWBImg = game.add.spine(360, 780, "longWBImg");
 				longWBImg.setAnimationByName(10, "animation",true);
 				b2=longWBImg.setAnimationByName(0, "ready_pao1");
 			//龙
-   			var	longImgAm = game.add.spine(200, 620, "longImg");
+   			var	longImgAm = game.add.spine(260, 650, "longImg");
    				longImgAm.setAnimationByName(10, "animation",true);
 				b1=longImgAm.setAnimationByName(0, "ready_pao");
 
