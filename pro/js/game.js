@@ -179,8 +179,10 @@ $(document).ready(function(){
 					zsAmImg.setAnimationByName(0, "stand_zsAmImg");
 
 
-				var css_titImg = game.add.image(100,300,'css_titImg');
-				css_titImg.scale.set(0.3);
+				var css_titImg = game.add.image(200,600,'css_titImg');
+					css_titImg.scale.set(0.3);
+				var html_titImg = game.add.image(550,600,'html_titImg');
+					html_titImg.scale.set(0.3);
 			}//this.create
 
 		}//var roleChoseState
