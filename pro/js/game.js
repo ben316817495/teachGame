@@ -58,6 +58,11 @@ $(document).ready(function(){
 	    	//logo
 	    	game.load.image('gameLogo','img/font.png');
 
+	    	game.load.image('redBtn','img/btn-red.png');
+	    	game.load.image('css_titImg','img/css.png');
+	    	game.load.image('html_titImg','img/html.png');
+	    	game.load.image('js_titImg','img/js.png');
+
 	    	
 
 
@@ -172,6 +177,10 @@ $(document).ready(function(){
 					zsAmImg.scale.set(0.64);
 					zsAmImg.setAnimationByName(10, "animation",true);
 					zsAmImg.setAnimationByName(0, "stand_zsAmImg");
+
+
+				var css_titImg = game.add.image(100,300,'css_titImg');
+				css_titImg.scale.set(0.3);
 			}//this.create
 
 		}//var roleChoseState
