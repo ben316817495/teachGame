@@ -46,12 +46,17 @@ $(document).ready(function(){
 
 	    	game.load.spine('longImg','img/bone/long/l1.json');
 	    	game.load.spine('longWBImg','img/bone/wb/wb.json');
+	    	game.load.spine('fsAmImg','img/bone/fs/fs.json');
+	    	game.load.spine('zsAmImg','img/bone/zs/zs.json');
 
 	    	// game.load.image('bg_darkDoor','img/darkDoor1.jpg');
 	    	// game.load.image('bg_darkDoor_star','img/darkDoor2.jpg');
 	    	// game.load.image('bg_darkDoor_moon','img/darkDoor_moon.png');
 	    	game.load.spritesheet('anHeiLight', 'img/ui_xuanfu1.png',300,350);//29.2kb
 	    	game.load.spritesheet('fireSprites','img/ui_xuanfu2.png',80,80);//371kb
+
+	    	//logo
+	    	game.load.image('gameLogo','img/font.png');
 
 	    	
 
@@ -102,7 +107,14 @@ $(document).ready(function(){
 
 			var indexRightBottomImg = game.add.image(1100,520,'index_rightBottom_img');
 			
-			var indexCenterDoorImg = game.add.image(80,380,'index_centerDoor_img');
+			//var indexCenterDoorImg = game.add.image(80,380,'index_centerDoor_img');
+			var indexCenterDoorImg = game.add.button(80,380,'index_centerDoor_img',function(){
+				//alert(1);
+				 game.state.start('roleChoseState');
+			});
+
+
+
 
 
 			
@@ -130,6 +142,10 @@ $(document).ready(function(){
    				longImgAm.setAnimationByName(10, "animation",true);
 				b1=longImgAm.setAnimationByName(0, "ready_pao");
 
+
+			var gameLogo = game.add.image(100,50,'gameLogo');
+				gameLogo.scale.set(0.5);
+
 			
 		}//this.create
 
@@ -141,11 +157,29 @@ $(document).ready(function(){
 
 	  }//var jmBgState
 
+	
 
+	var roleChoseState = function(game){
+
+			this.create = function(){
+				var fsAmImg = game.add.spine(100,600,'fsAmImg');
+					fsAmImg.scale.set(0.5);
+					fsAmImg.setAnimationByName(10, "deful",true);
+					fsAmImg.setAnimationByName(0, "stand_fsAmImg");
+
+
+				var zsAmImg = game.add.spine(100,630,'zsAmImg');
+					zsAmImg.scale.set(0.64);
+					zsAmImg.setAnimationByName(10, "animation",true);
+					zsAmImg.setAnimationByName(0, "stand_zsAmImg");
+			}//this.create
+
+		}//var roleChoseState
 
 	game.state.add('boot',bootState);
 	game.state.add('loader',loaderState);
 	game.state.add('jmBgState',jmBgState);
+	game.state.add('roleChoseState',roleChoseState);
 
 
 	game.state.start('boot');//启动第一个场景

@@ -1,0 +1,143 @@
+
+fs.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+body
+  rotate: true
+  xy: 284, 542
+  size: 477, 669
+  orig: 477, 669
+  offset: 0, 0
+  index: -1
+hq
+  rotate: false
+  xy: 955, 887
+  size: 66, 132
+  orig: 66, 132
+  offset: 0, 0
+  index: -1
+huzi
+  rotate: false
+  xy: 955, 755
+  size: 61, 130
+  orig: 61, 130
+  offset: 0, 0
+  index: -1
+left_h
+  rotate: true
+  xy: 471, 456
+  size: 84, 158
+  orig: 84, 158
+  offset: 0, 0
+  index: -1
+nc_left
+  rotate: false
+  xy: 284, 106
+  size: 185, 434
+  orig: 185, 434
+  offset: 0, 0
+  index: -1
+pd
+  rotate: false
+  xy: 955, 441
+  size: 56, 178
+  orig: 56, 178
+  offset: 0, 0
+  index: -1
+right_h
+  rotate: true
+  xy: 762, 408
+  size: 132, 190
+  orig: 132, 190
+  offset: 0, 0
+  index: -1
+tf_left
+  rotate: true
+  xy: 631, 469
+  size: 34, 75
+  orig: 34, 75
+  offset: 0, 0
+  index: -1
+tf_right
+  rotate: true
+  xy: 631, 505
+  size: 35, 111
+  orig: 35, 111
+  offset: 0, 0
+  index: -1
+tou
+  rotate: false
+  xy: 471, 111
+  size: 289, 328
+  orig: 289, 328
+  offset: 0, 0
+  index: -1
+wyf_left
+  rotate: true
+  xy: 2, 2
+  size: 95, 459
+  orig: 95, 459
+  offset: 0, 0
+  index: -1
+xz_left
+  rotate: true
+  xy: 463, 2
+  size: 102, 256
+  orig: 102, 256
+  offset: 0, 0
+  index: -1
+xz_right
+  rotate: false
+  xy: 762, 101
+  size: 199, 173
+  orig: 199, 173
+  offset: 0, 0
+  index: -1
+yy_hq
+  rotate: true
+  xy: 762, 276
+  size: 130, 186
+  orig: 130, 186
+  offset: 0, 0
+  index: -1
+yy_hq_1
+  rotate: true
+  xy: 954, 302
+  size: 137, 52
+  orig: 137, 52
+  offset: 0, 0
+  index: -1
+yy_hq_2
+  rotate: true
+  xy: 955, 621
+  size: 132, 59
+  orig: 132, 59
+  offset: 0, 0
+  index: -1
+zhang
+  rotate: false
+  xy: 2, 99
+  size: 280, 920
+  orig: 280, 920
+  offset: 0, 0
+  index: -1
+
+fs2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+nc_nirht
+  rotate: true
+  xy: 318, 75
+  size: 148, 385
+  orig: 148, 385
+  offset: 0, 0
+  index: -1
+wyf_right
+  rotate: true
+  xy: 2, 2
+  size: 221, 314
+  orig: 221, 314
+  offset: 0, 0
+  index: -1
