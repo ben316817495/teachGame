@@ -178,8 +178,8 @@ $(document).ready(function(){
 					itemVal.itemAmName ='zsAmImg';
 					itemVal.amName = "animation";
 					itemVal.fristAnName = "stand_zsAmImg";
-					itemVal.scale = 0.64;
-					itemVal.x = 50;
+					itemVal.scale = 0.78;
+					itemVal.x = -50;
 					itemVal.y = 680;
 					changeTheMen(itemVal);
 				});
@@ -189,8 +189,8 @@ $(document).ready(function(){
 					itemVal.itemAmName ='fsAmImg';
 					itemVal.amName = "deful";
 					itemVal.fristAnName = "stand_fsAmImg";
-					itemVal.scale = 0.5;
-					itemVal.x = 380;
+					itemVal.scale = 0.6;
+					itemVal.x = 340;
 					itemVal.y = 650;
 					changeTheMen(itemVal);
 				});
@@ -220,8 +220,8 @@ $(document).ready(function(){
 				// 	zsAmImg.setAnimationByName(10, "animation",true);
 				// 	zsAmImg.setAnimationByName(0, "stand_zsAmImg");
 
-				var gamePeopleAn = game.add.spine(50,680,'zsAmImg');
-				 	gamePeopleAn.scale.set(0.64);
+				var gamePeopleAn = game.add.spine(-50,680,'zsAmImg');
+				 	gamePeopleAn.scale.set(0.78);
 				 	gamePeopleAn.setAnimationByName(10, "animation",true);
 				 	gamePeopleAn.setAnimationByName(0, "stand_zsAmImg");
 
