@@ -48,6 +48,7 @@ $(document).ready(function(){
 	    	game.load.spine('longWBImg','img/bone/wb/wb.json');
 	    	game.load.spine('fsAmImg','img/bone/fs/fs.json');
 	    	game.load.spine('zsAmImg','img/bone/zs/zs.json');
+	    	game.load.spine('kzAmImg','img/bone/kz/kz.json');
 
 	    	// game.load.image('bg_darkDoor','img/darkDoor1.jpg');
 	    	// game.load.image('bg_darkDoor_star','img/darkDoor2.jpg');
@@ -189,14 +190,21 @@ $(document).ready(function(){
 					itemVal.itemAmName ='fsAmImg';
 					itemVal.amName = "deful";
 					itemVal.fristAnName = "stand_fsAmImg";
-					itemVal.scale = 0.6;
+					itemVal.scale = 0.65;
 					itemVal.x = 340;
 					itemVal.y = 650;
 					changeTheMen(itemVal);
 				});
 				
 				var jsHZ = game.add.button(10,500,'jsHZ',function(){
-					alert('js');
+					//alert('js');
+					itemVal.itemAmName ='kzAmImg';
+					itemVal.amName = "animation";
+					itemVal.fristAnName = "stand_kzAmImg";
+					itemVal.scale = 0.77;
+					itemVal.x = 280;
+					itemVal.y = 700;
+					changeTheMen(itemVal);
 				});
 
 				var leftCol_BtnGroup = game.add.group();
