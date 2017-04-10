@@ -57,11 +57,18 @@ $(document).ready(function(){
 
 	    	//logo
 	    	game.load.image('gameLogo','img/font.png');
-
 	    	game.load.image('redBtn','img/btn-red.png');
-	    	game.load.image('css_titImg','img/css.png');
-	    	game.load.image('html_titImg','img/html.png');
-	    	game.load.image('js_titImg','img/js.png');
+	    	//人物选择界面背景
+	    	game.load.image('peopleTypeBg','img/peoBg.jpg');
+	    	//html_hz.png 战士徽章
+	    	game.load.image('htmlHZ','img/html_hz.png');
+	    	game.load.image('cssHZ','img/css_hz.png');
+	    	game.load.image('jsHZ','img/js_hz.png');
+
+
+
+
+	    	
 
 	    	
 
@@ -120,12 +127,6 @@ $(document).ready(function(){
 
 
 
-
-
-			
-
-
-
 			var anHeiLight = game.add.sprite(580, 410, 'anHeiLight');
 				//anHeiLight.scale.set(1.3);
    				anHeiLight.animations.add('loadImg_anHeiLight',[0,1 ,2, 3, 4,5,6,7,8,9,10,11]);
@@ -163,26 +164,79 @@ $(document).ready(function(){
 	  }//var jmBgState
 
 	
-
+	var itemVal =[];
 	var roleChoseState = function(game){
 
 			this.create = function(){
-				var fsAmImg = game.add.spine(100,600,'fsAmImg');
-					fsAmImg.scale.set(0.5);
-					fsAmImg.setAnimationByName(10, "deful",true);
-					fsAmImg.setAnimationByName(0, "stand_fsAmImg");
 
 
-				var zsAmImg = game.add.spine(100,630,'zsAmImg');
-					zsAmImg.scale.set(0.64);
-					zsAmImg.setAnimationByName(10, "animation",true);
-					zsAmImg.setAnimationByName(0, "stand_zsAmImg");
+				var peopleTypeBg = game.add.image(-100,0,'peopleTypeBg');
+					peopleTypeBg.scale.set(0.6);
+
+				var htmlHZ = game.add.button(10,300,'htmlHZ',function(){
+
+					itemVal.itemAmName ='zsAmImg';
+					itemVal.amName = "animation";
+					itemVal.fristAnName = "stand_zsAmImg";
+					itemVal.scale = 0.64;
+					itemVal.x = 50;
+					itemVal.y = 680;
+					changeTheMen(itemVal);
+				});
+
+				var cssHZ = game.add.button(10,400,'cssHZ',function(){
+					//alert('css');
+					itemVal.itemAmName ='fsAmImg';
+					itemVal.amName = "deful";
+					itemVal.fristAnName = "stand_fsAmImg";
+					itemVal.scale = 0.5;
+					itemVal.x = 380;
+					itemVal.y = 650;
+					changeTheMen(itemVal);
+				});
+				
+				var jsHZ = game.add.button(10,500,'jsHZ',function(){
+					alert('js');
+				});
+
+				var leftCol_BtnGroup = game.add.group();
+					leftCol_BtnGroup.add(htmlHZ);
+					leftCol_BtnGroup.add(cssHZ);
+					leftCol_BtnGroup.add(jsHZ);
 
 
-				var css_titImg = game.add.image(200,600,'css_titImg');
-					css_titImg.scale.set(0.3);
-				var html_titImg = game.add.image(550,600,'html_titImg');
-					html_titImg.scale.set(0.3);
+					leftCol_BtnGroup.y=-60;
+
+
+					//console.log(leftCol_BtnGroup);
+
+				// var fsAmImg = game.add.spine(100,600,'fsAmImg');
+				// 	fsAmImg.scale.set(0.5);
+				// 	fsAmImg.setAnimationByName(10, "deful",true);
+				// 	fsAmImg.setAnimationByName(0, "stand_fsAmImg");
+
+				// var zsAmImg = game.add.spine(50,680,'zsAmImg');
+				// 	zsAmImg.scale.set(0.64);
+				// 	zsAmImg.setAnimationByName(10, "animation",true);
+				// 	zsAmImg.setAnimationByName(0, "stand_zsAmImg");
+
+				var gamePeopleAn = game.add.spine(50,680,'zsAmImg');
+				 	gamePeopleAn.scale.set(0.64);
+				 	gamePeopleAn.setAnimationByName(10, "animation",true);
+				 	gamePeopleAn.setAnimationByName(0, "stand_zsAmImg");
+
+
+				function changeTheMen(itemVal){
+						gamePeopleAn.destroy();
+						gamePeopleAn = game.add.spine(itemVal.x,itemVal.y,itemVal.itemAmName);
+				 		gamePeopleAn.scale.set(itemVal.scale);
+				 		gamePeopleAn.setAnimationByName(10, itemVal.amName,true);
+				 		gamePeopleAn.setAnimationByName(0, itemVal.fristAnName);
+
+				}
+
+
+			
 			}//this.create
 
 		}//var roleChoseState
