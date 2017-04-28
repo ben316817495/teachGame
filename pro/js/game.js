@@ -70,6 +70,9 @@ $(document).ready(function(){
 	    	game.load.image('htmlMessage','img/ls/html.png');
 	    	game.load.image('jsMessage','img/ls/js.png');
 
+	    	//圆取消按钮
+	    	game.load.image('canleButton_c','img/X_ButtonV2.png');
+
 
 	    	game.load.image('messageBoard','img/ls/TutorialProgress.png');
 	    	game.load.image('messageBoardBG','img/ls/TutorialProgress_band.png');
@@ -181,6 +184,13 @@ $(document).ready(function(){
 
 				var peopleTypeBg = game.add.image(-200,0,'peopleTypeBg');
 					peopleTypeBg.scale.set(0.6);
+
+
+				var	canleButton_c = game.add.button(15,40,'canleButton_c',function(){
+					//alert(1);
+					 game.state.start('jmBgState');
+				});
+					canleButton_c.scale.set(0.5);
 
 				var htmlHZ = game.add.button(10,300,'htmlHZ',function(){
 
