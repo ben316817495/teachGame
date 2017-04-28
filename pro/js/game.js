@@ -66,6 +66,14 @@ $(document).ready(function(){
 	    	game.load.image('cssHZ','img/css_hz.png');
 	    	game.load.image('jsHZ','img/js_hz.png');
 
+	    	game.load.image('cssMessage','img/ls/css.png');
+	    	game.load.image('htmlMessage','img/ls/html.png');
+	    	game.load.image('jsMessage','img/ls/js.png');
+
+
+	    	game.load.image('messageBoard','img/ls/TutorialProgress.png');
+	    	game.load.image('messageBoardBG','img/ls/TutorialProgress_band.png');
+
 
 
 
@@ -179,6 +187,7 @@ $(document).ready(function(){
 					itemVal.itemAmName ='zsAmImg';
 					itemVal.amName = "animation";
 					itemVal.fristAnName = "stand_zsAmImg";
+					itemVal.messageAnName = 'htmlMessage';
 					itemVal.scale = 0.78;
 					itemVal.x = -50;
 					itemVal.y = 680;
@@ -190,6 +199,7 @@ $(document).ready(function(){
 					itemVal.itemAmName ='fsAmImg';
 					itemVal.amName = "deful";
 					itemVal.fristAnName = "stand_fsAmImg";
+					itemVal.messageAnName = 'cssMessage';
 					itemVal.scale = 0.65;
 					itemVal.x = 340;
 					itemVal.y = 650;
@@ -201,6 +211,7 @@ $(document).ready(function(){
 					itemVal.itemAmName ='kzAmImg';
 					itemVal.amName = "animation";
 					itemVal.fristAnName = "stand_kzAmImg";
+					itemVal.messageAnName = 'jsMessage';
 					itemVal.scale = 0.77;
 					itemVal.x = 280;
 					itemVal.y = 700;
@@ -233,13 +244,23 @@ $(document).ready(function(){
 				 	gamePeopleAn.setAnimationByName(10, "animation",true);
 				 	gamePeopleAn.setAnimationByName(0, "stand_zsAmImg");
 
+				 var messageBoard = game.add.image(700,90,'messageBoard');
+				 	 messageBoard.scale.set(0.5);
+				 var messageBoardBG = game.add.image(755,145,'messageBoardBG');
+				 	 messageBoardBG.scale.set(0.5);
+				 var htmlMessage = game.add.image(755,145,'htmlMessage');
+				 	 htmlMessage.scale.set(0.5);
+
 
 				function changeTheMen(itemVal){
 						gamePeopleAn.destroy();
+						htmlMessage.destroy();
 						gamePeopleAn = game.add.spine(itemVal.x,itemVal.y,itemVal.itemAmName);
 				 		gamePeopleAn.scale.set(itemVal.scale);
 				 		gamePeopleAn.setAnimationByName(10, itemVal.amName,true);
 				 		gamePeopleAn.setAnimationByName(0, itemVal.fristAnName);
+				 	    htmlMessage = game.add.image(755,145,itemVal.messageAnName);
+				 	    htmlMessage.scale.set(0.5);
 
 				}
 
