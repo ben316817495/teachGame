@@ -179,7 +179,7 @@ $(document).ready(function(){
 			this.create = function(){
 
 
-				var peopleTypeBg = game.add.image(-100,0,'peopleTypeBg');
+				var peopleTypeBg = game.add.image(-200,0,'peopleTypeBg');
 					peopleTypeBg.scale.set(0.6);
 
 				var htmlHZ = game.add.button(10,300,'htmlHZ',function(){
@@ -189,7 +189,7 @@ $(document).ready(function(){
 					itemVal.fristAnName = "stand_zsAmImg";
 					itemVal.messageAnName = 'htmlMessage';
 					itemVal.scale = 0.78;
-					itemVal.x = -50;
+					itemVal.x = -150;
 					itemVal.y = 680;
 					changeTheMen(itemVal);
 				});
@@ -201,7 +201,7 @@ $(document).ready(function(){
 					itemVal.fristAnName = "stand_fsAmImg";
 					itemVal.messageAnName = 'cssMessage';
 					itemVal.scale = 0.65;
-					itemVal.x = 340;
+					itemVal.x = 240;
 					itemVal.y = 650;
 					changeTheMen(itemVal);
 				});
@@ -213,7 +213,7 @@ $(document).ready(function(){
 					itemVal.fristAnName = "stand_kzAmImg";
 					itemVal.messageAnName = 'jsMessage';
 					itemVal.scale = 0.77;
-					itemVal.x = 280;
+					itemVal.x = 180;
 					itemVal.y = 700;
 					changeTheMen(itemVal);
 				});
@@ -239,7 +239,7 @@ $(document).ready(function(){
 				// 	zsAmImg.setAnimationByName(10, "animation",true);
 				// 	zsAmImg.setAnimationByName(0, "stand_zsAmImg");
 
-				var gamePeopleAn = game.add.spine(-50,680,'zsAmImg');
+				var gamePeopleAn = game.add.spine(-150,680,'zsAmImg');
 				 	gamePeopleAn.scale.set(0.78);
 				 	gamePeopleAn.setAnimationByName(10, "animation",true);
 				 	gamePeopleAn.setAnimationByName(0, "stand_zsAmImg");
