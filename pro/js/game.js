@@ -77,6 +77,14 @@ $(document).ready(function(){
 	    	game.load.image('messageBoard','img/ls/TutorialProgress.png');
 	    	game.load.image('messageBoardBG','img/ls/TutorialProgress_band.png');
 
+	    	//html技能
+	    	game.load.image('skillHtml_html5','img/skill/html5.png');
+	    	game.load.image('skillHtml_svg','img/skill/SVG.png');
+	    	game.load.image('skillHtml_canvas','img/skill/CANVAS.png');
+	    	game.load.image('skillHtml_bootstrap','img/skill/bootstrap.png');
+
+	    	//css技能
+	    	//js技能
 
 
 
