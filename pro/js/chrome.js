@@ -69,6 +69,8 @@ $(document).ready(function(){
 
 	var roleChoseState = function(game){
 		var loginBg,loginBg_star,loginBgyun;
+		var longImg;
+		var cursors;
 		this.create = function(){
 
 
@@ -78,15 +80,32 @@ $(document).ready(function(){
 			loginBgyun =game.add.tileSprite(0,75,50000,70,'yunBg');
 			loginBgyun.scale.set(0.6);
 
-			var longImg = game.add.sprite(50, game.world.centerY+20, 'longAM');
+			longImg = game.add.sprite(50, game.world.centerY+20, 'longAM');
 	    	longImg.animations.add('loadImg_away',[ 2, 3]);
+	    	longImg.animations.add('loadImg_down',[ 0, 1]);
+	    	longImg.animations.add('loadImg_up',[ 5, 6]);
  		    longImg.play('loadImg_away', 10, true);
  		    longImg.scale.set(0.5);
+
+
+ 		     cursors = game.input.keyboard.createCursorKeys();
 
 		}
 		this.update = function() {
 			loginBg.tilePosition.x -=10;
 			loginBgyun.tilePosition.x -=2;
+
+			if (cursors.down.isDown){
+				longImg.play('loadImg_down',10, true);
+			}else if(cursors.up.isDown){
+				longImg.play('loadImg_up',10, true);
+			}else{
+				longImg.play('loadImg_away', 10, true);	
+			}
+			
+			
+
+
 		}//this.update
 	}
 
