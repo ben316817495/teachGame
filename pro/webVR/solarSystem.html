@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title>太阳系</title>
+
+		<style>
+			body { margin: 0; background-color: #000;}
+			canvas { width: 100%; height: 100% }
+		</style>
+</head>
+<body>
+<script src="demo/js/jquery-1.9.1.js"></script>
+<script src="demo/js/three.js"></script>
+<script src="demo/js/TrackballControls.js"></script>	
+<script type="text/javascript">
+	$(document).ready(function(){
+
+			var scene = new THREE.Scene();
+			var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+			camera.position.set(100,400,400);
+				camera.lookAt(scene.position);	
+			scene.add(new THREE.AmbientLight(0x333333));
+
+
+			var renderer = new THREE.WebGLRenderer();
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			var light = new THREE.DirectionalLight(0xffffff, 1);
+			light.position.set(100,100,0).normalize();
+			scene.add(light);
+
+
+			var earth = createSphere(.8, 320);
+			earth.rotation.y = 6; 
+			scene.add(earth);
+
+
+			var moon = creatTheSphere(.08, 10,'images/moon.jpg');
+			scene.add(moon);
+
+			var earthClouds = createClouds(.8, 32);
+			earthClouds.rotation.y = 26; 
+			scene.add(earthClouds);
+
+			//金星
+			var venus = creatTheSphere(.5, 10,'images/venus.jpg');
+			scene.add(venus);
+			
+			//水星
+			var mercury = creatTheSphere(.4, 10,'images/mercury.jpg');
+			scene.add(mercury);
+			
+			//火星
+			var mars = creatTheSphere(.4, 10,'images/mars.jpg');
+			scene.add(mars);
+
+			//木星
+			var jupiter = creatTheSphere(2, 10,'images/Jupiter.jpg');
+			scene.add(jupiter);
+			
+			//土星
+			var saturn = creatTheSphere(1.5, 10,'images/saturn.jpg');
+			scene.add(saturn);
+			
+			//海皇星
+			var horta = creatTheSphere(1, 10,'images/horta.jpg');
+			scene.add(horta);
+
+			//天王星
+			var uranus  = creatTheSphere(1, 10,'images/uranus.jpg');
+			scene.add(uranus);
+			
+			//冥王星
+			var pluto = creatTheSphere(.4, 10,'images/Pluto.jpg');
+			scene.add(pluto);
+
+
+			var sun = creatTheSphere(5, 10,'images/sun.jpg');
+			scene.add(sun);
+
+			var stars = createStars(90, 64);
+			scene.add(stars);
+
+			var controls = new THREE.TrackballControls(camera);
+
+
+
+			camera.position.z = 5;
+ 			
+ 			var t=0;
+			var render = function () {
+
+				 t++;
+
+				//light.position.set(  mercury.position.x,   mercury.position.y , mercury.position.z);
+
+				mercury.position.set( -9*Math.sin(t/87.70) ,  0, 9*Math.cos(t/87.70));
+				
+				venus.position.set( -11*Math.sin(t/225) , 0 , 11*Math.cos(t/225));
+				
+				earth.position.set( -13*Math.sin(t/365) , 0 , 13*Math.cos(t/365));
+				earthClouds.position.set( -13*Math.sin(t/365) , 0 , 13*Math.cos(t/365));
+				
+				moon.position.set( -1*Math.sin(t/50)+earth.position.x , 0 , 1*Math.cos(t/50)+earth.position.z);
+
+				mars.position.set( -15*Math.sin(t/686) , 0 , 15*Math.cos(t/686));
+
+				jupiter.position.set( -18*Math.sin(t/401) , 0 , 18*Math.cos(t/401));
+
+				saturn.position.set( -23*Math.sin(t/1058) , 0 , 23*Math.cos(t/1058));
+
+				horta.position.set( -27*Math.sin(t/598) , 0 , 27*Math.cos(t/598));
+
+				uranus.position.set( -30*Math.sin(t/306) , 0 , 30*Math.cos(t/306));
+
+				pluto.position.set( -33*Math.sin(t/250) , 0 , 33*Math.cos(t/250));
+
+
+				
+				
+
+
+
+
+				earth.rotation.y += 0.0005;
+				earthClouds.rotation.y += 0.001;
+				moon.rotation.y += 0.001;
+				venus.rotation.y += 0.0005;
+				mercury.rotation.y += 0.0005;
+				mars.rotation.y += 0.0005;
+
+				sun.rotation.y += 0.0005;
+
+
+
+				controls.update();
+				requestAnimationFrame( render );
+				renderer.render(scene, camera);
+			};
+
+			render();
+
+
+	
+
+
+	function creatTheSphere(radius, segments,url) {
+						return new THREE.Mesh(
+						new THREE.SphereGeometry(radius , segments, segments),			
+						new THREE.MeshPhongMaterial({
+							map:         THREE.ImageUtils.loadTexture(url),
+							//transparent: true
+								
+						})
+					);		
+
+
+			}
+
+
+	function createSphere(radius, segments) {
+				return new THREE.Mesh(
+				new THREE.SphereGeometry(radius, segments, segments),
+				new THREE.MeshPhongMaterial({
+						map:         THREE.ImageUtils.loadTexture('images/2_no_clouds_4k.jpg'),
+						bumpMap:     THREE.ImageUtils.loadTexture('images/elev_bump_4k.jpg'),
+						bumpScale:   0.005,
+						specularMap: THREE.ImageUtils.loadTexture('images/water_4k.png'),
+						specular:    new THREE.Color('grey')								
+			})
+		);
+	}
+
+	function createClouds(radius, segments) {
+		return new THREE.Mesh(
+			new THREE.SphereGeometry(radius + 0.05, segments, segments),			
+			new THREE.MeshPhongMaterial({
+				map:         THREE.ImageUtils.loadTexture('images/fair_clouds_4k.png'),
+				transparent: true
+			})
+		);		
+	}
+
+
+	function createStars(radius, segments) {
+		return new THREE.Mesh(
+			new THREE.SphereGeometry(radius, segments, segments), 
+			new THREE.MeshBasicMaterial({
+				map:  THREE.ImageUtils.loadTexture('images/galaxy_starfield.png'), 
+				side: THREE.BackSide
+			})
+		);
+	}
+
+	});
+</script>
+
+
+</body>
+</html>

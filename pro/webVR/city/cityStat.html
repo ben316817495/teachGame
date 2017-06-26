@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>城市场景</title>
+
+		<style>
+			body { margin: 0; /*background-color: #000;*/ overflow: hidden;}
+			canvas { width: 100%; height: 100% }
+		</style>
+</head>
+<body>
+
+
+
+<script src="js/jquery-1.9.1.js"></script>
+<!--<script src="demo/js/three.js"></script>-->
+<script type="text/javascript" src="js/three.js"></script>
+<script src="js/TrackballControls.js"></script>	
+<script src="js/MTLLoader.js"></script>
+<script src="js/OBJLoader.js"></script>	
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+		
+
+		var scene = new THREE.Scene();
+		var loader = new THREE.TextureLoader();
+		var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 100000 );
+		var renderer = new THREE.WebGLRenderer();
+		var controls = new THREE.TrackballControls(camera);
+
+		var loaderObj = new THREE.OBJLoader();
+
+		var mtlLoader = new THREE.MTLLoader();
+				
+
+
+
+
+		cityScene();
+		
+
+
+		function cityScene(){
+
+
+
+			
+			
+			camera.position.set(-1500,500,-200);
+			camera.lookAt(scene.position);	
+			scene.add(new THREE.AmbientLight(0x333333));
+
+			//camera.lookAt(scene.position);	
+
+
+			
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			document.body.appendChild( renderer.domElement );
+
+			var light = new THREE.DirectionalLight(0xffffff, 1);
+			light.position.set(-100,100,0).normalize();
+			scene.add(light);
+
+
+			
+			//camera.position.z = 5;
+
+/*
+			//var floorMaterial = new THREE.MeshBasicMaterial( {color:0x444444, side:THREE.DoubleSide} );
+			var floorMaterial = new THREE.MeshBasicMaterial({
+						map:  THREE.ImageUtils.loadTexture('images/city/dimian2.jpg'), 
+						side: THREE.BackSide
+					} );
+			var floorGeometry = new THREE.PlaneGeometry(1000, 1000, 10, 10);
+			var floor = new THREE.Mesh(floorGeometry, floorMaterial);
+			//floor.position.y = -0.5;
+			floor.rotation.x = Math.PI / 2;
+			scene.add(floor);
+*/
+
+			loaderObj.load('OBJ/24.obj',function(houseObj){
+
+				houseObj.position.y=-240;
+				houseObj.position.z=-1400;
+				houseObj.position.x=500;
+
+				houseObj.scale.set(1.5,1.5,1.5);
+				houseObj.rotation.y=- Math.PI / 2;
+
+
+				scene.add(houseObj);
+
+			});
+
+			//mtlLoader.setPath( 'obj/male02/' );
+				mtlLoader.load( 'OBJ/24.mtl', function( materials ) {
+
+					materials.preload();
+
+					var objLoader = new THREE.OBJLoader();
+					objLoader.setMaterials( materials );
+					//objLoader.setPath( 'obj/male02/' );
+					objLoader.load( 'OBJ/24.obj', function ( object ) {
+
+						//object.position.y = - 95;
+
+						object.position.y=-240;
+						object.position.z=-2900;
+						object.position.x=500;
+
+						object.scale.set(1.5,1.5,1.5);
+						object.rotation.y=- Math.PI / 2;
+						scene.add( object );
+
+					} );
+
+				});
+
+
+			//砖瓦地面及贴图
+
+
+			
+			var groundTexture = loader.load( 'images/city/dimian21.jpg' );
+				groundTexture.wrapS = THREE.RepeatWrapping;
+				groundTexture.wrapT = THREE.RepeatWrapping;
+				groundTexture.repeat.set( 200, 200 );
+				groundTexture.anisotropy = 16;
+
+			var groundMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: groundTexture } );
+
+			var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+				mesh.position.y = - 251;
+				mesh.rotation.x = - Math.PI / 2;
+				mesh.receiveShadow = true;
+				scene.add( mesh );
+
+
+
+
+			//马路素材
+/*
+			var maluTexture = loader.load( 'images/city/malu.jpg' );
+				maluTexture.wrapS = THREE.RepeatWrapping;
+				maluTexture.wrapT = THREE.RepeatWrapping;
+				maluTexture.repeat.set( 2,110 );
+				maluTexture.anisotropy = 16;
+
+			var maluMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: maluTexture } );
+
+			var maluTexturemesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 800, 20000 ), maluMaterial );
+				maluTexturemesh.position.y = - 249;
+				maluTexturemesh.position.x = - 350;
+				maluTexturemesh.rotation.x = - Math.PI / 2 ;
+				
+
+				//maluTexturemesh.receiveShadow = true;
+				scene.add( maluTexturemesh );
+*/
+
+			var	maluTexturemesh = creatFlootImg('images/city/malu.jpg' ,2,110 ,800, 20000, - 248, - 350, - Math.PI / 2);
+			scene.add( maluTexturemesh );
+
+			//马路素材-Heng
+			var maluHengTexturemesh = creatFlootImg('images/city/maluHeng.jpg',100,2,20000, 800,- 248,0, - Math.PI / 2);
+			scene.add( maluHengTexturemesh );
+
+			//马路素材-zhong
+			var maluzhongTexturemesh = creatFlootImg('images/city/lum.jpg', 4,4,800, 800,- 245,- 350, - Math.PI / 2);
+			scene.add( maluzhongTexturemesh );
+
+			
+			//斑马线
+			var banMaMesh = creatFlootImg('images/city/banma.jpg',4,1,800,200,- 245,- 350,- Math.PI / 2);
+			banMaMesh.position.z = 500; 
+			scene.add( banMaMesh );
+
+			var banMaMesh2 = creatFlootImg('images/city/banma.jpg',4,1,800,200,- 245,- 350,- Math.PI / 2);
+			banMaMesh2.position.z = -500; 
+			scene.add( banMaMesh2 );
+
+			var banMaMesh3 = creatFlootImg('images/city/banma-Heng.jpg',1,4,200,800,- 245,- 850,- Math.PI / 2);
+			scene.add( banMaMesh3 );
+
+			var banMaMesh4 = creatFlootImg('images/city/banma-Heng.jpg',1,4,200,800,- 245,150,- Math.PI / 2);
+			scene.add( banMaMesh4 );
+
+
+
+
+
+
+
+
+
+
+			//马路边
+			var mltjTexturemesh = creatFlootImg('images/city/mltj.jpg' ,1,66,20,20000, - 249, 50, - Math.PI / 2);
+			scene.add( mltjTexturemesh );
+
+			var mltj1Texturemesh = creatFlootImg('images/city/mltj.jpg' ,1,66,20,20000, - 249, - 750, - Math.PI / 2);
+			scene.add( mltj1Texturemesh );
+
+
+				
+
+
+			/*
+			var houseNo1Geometry = new THREE.CubeGeometry( 70, 170, 100 );
+			var houseNo1Material = new THREE.MeshBasicMaterial( { color: 0x9999ff} );
+
+			var houseNo1 = new THREE.Mesh( houseNo1Geometry, houseNo1Material );
+			houseNo1.position.set(0,85,0);
+			scene.add(houseNo1);
+
+			*/
+
+			//信号灯
+			/////////////////////////////////////灯具1
+
+			var boxIronPillars = creatBox(20,400,20,'images/city/transition3.png');
+			boxIronPillars.position.set(70,-70,-500);
+			scene.add(boxIronPillars);
+
+			var boxIronPillars01 = creatBox(10,400,10,'images/city/transition3.png');
+			boxIronPillars01.position.set(70,100,-500);
+			scene.add(boxIronPillars01);
+
+			var boxIronPillars01 = creatBox(200,10,10,'images/city/transition3.png');
+			boxIronPillars01.position.set(-25,300,-500);
+			scene.add(boxIronPillars01);
+
+			var lightBoxIronPillars = creatBoxGeometry(150, 50, 10, 0x2E2E2E);
+			lightBoxIronPillars.position.set(-50,300,-490);
+			scene.add( lightBoxIronPillars );
+
+			var lightCircleGreen = creatCircleGeometry(20, 32,  0x32CD32);
+			lightCircleGreen.position.set(-95,299,-484);
+			scene.add( lightCircleGreen );
+
+			var lightCircleYellow = creatCircleGeometry(20, 32,  0xEEAD0E);
+			lightCircleYellow.position.set(-48,299,-484);
+			scene.add( lightCircleYellow );
+
+			var lightCircleRed = creatCircleGeometry(20, 32,  0xCD3333);
+			lightCircleRed.position.set(0,299,-484);
+
+			//lightCircleRed.material.color.r:0.2;
+			scene.add( lightCircleRed );
+
+			/////////////////////////////////////灯具3
+
+			var boxIronPillars = creatBox(20,400,20,'images/city/transition3.png');
+			boxIronPillars.position.set(-770,-70,500);
+			scene.add(boxIronPillars);
+
+			var boxIronPillars01 = creatBox(10,400,10,'images/city/transition3.png');
+			boxIronPillars01.position.set(-770,100,500);
+			scene.add(boxIronPillars01);
+
+			var boxIronPillars01 = creatBox(200,10,10,'images/city/transition3.png');
+			boxIronPillars01.position.set(-670,300,500);
+			scene.add(boxIronPillars01);
+
+			var lightBoxIronPillars = creatBoxGeometry(150, 50, 10, 0x2E2E2E);
+			lightBoxIronPillars.position.set(-650,300,490);
+			scene.add( lightBoxIronPillars );
+
+			var lightCircleGreen2 = creatCircleGeometry(20, 32,  0x32CD32);
+			lightCircleGreen2.position.set(-600,299,484);
+			lightCircleGreen2.rotation.y = - Math.PI ;
+			scene.add( lightCircleGreen2 );
+
+			var lightCircleYellow2 = creatCircleGeometry(20, 32,  0xEEAD0E);
+			lightCircleYellow2.position.set(-650,299,484);
+			lightCircleYellow2.rotation.y = - Math.PI ;
+			scene.add( lightCircleYellow2 );
+
+			var lightCircleRed2 = creatCircleGeometry(20, 32,  0xCD3333);
+			lightCircleRed2.position.set(-700,299,484);
+			lightCircleRed2.rotation.y = - Math.PI ;
+			scene.add( lightCircleRed2 );
+
+
+
+			////////////////////////////////////灯具2
+			var boxIronPillars = creatBox(20,400,20,'images/city/transition3.png');
+			boxIronPillars.position.set(70,-70,500);
+			scene.add(boxIronPillars);
+
+			var boxIronPillars01 = creatBox(10,400,10,'images/city/transition3.png');
+			boxIronPillars01.position.set(70,100,500);
+			scene.add(boxIronPillars01);
+
+			var boxIronPillars01 = creatBox(10,10,200,'images/city/transition3.png');
+			boxIronPillars01.position.set(70,300,400);
+			scene.add(boxIronPillars01);
+
+
+			var lightBoxIronPillars = creatBoxGeometry(10, 50, 150, 0x2E2E2E);
+			lightBoxIronPillars.position.set(60,300,370);
+			
+			scene.add( lightBoxIronPillars );
+
+			var lightCircleGreen1 = creatCircleGeometry(20, 32,  0x32CD32);
+			lightCircleGreen1.position.set(54,299,320);
+			lightCircleGreen1.rotation.y = - Math.PI / 2 ;
+			scene.add( lightCircleGreen1 );
+
+			var lightCircleYellow1 = creatCircleGeometry(20, 32,  0xEEAD0E);
+			lightCircleYellow1.position.set(54,299,370);
+			lightCircleYellow1.rotation.y = - Math.PI / 2 ;
+			scene.add( lightCircleYellow1 );
+
+			var lightCircleRed1 = creatCircleGeometry(20, 32,  0xCD3333);
+			lightCircleRed1.position.set(54,299,420);
+			lightCircleRed1.rotation.y = - Math.PI / 2 ;
+			scene.add( lightCircleRed1 );
+
+
+			////////////////////////////////////灯具4
+			var boxIronPillars = creatBox(20,400,20,'images/city/transition3.png');
+			boxIronPillars.position.set(-770,-70,-500);
+			scene.add(boxIronPillars);
+
+			var boxIronPillars01 = creatBox(10,400,10,'images/city/transition3.png');
+			boxIronPillars01.position.set(-770,100,-500);
+			scene.add(boxIronPillars01);
+
+			var boxIronPillars01 = creatBox(10,10,200,'images/city/transition3.png');
+			boxIronPillars01.position.set(-770,300,-400);
+			scene.add(boxIronPillars01);
+
+
+			var lightBoxIronPillars = creatBoxGeometry(10, 50, 150, 0x2E2E2E);
+			lightBoxIronPillars.position.set(-760,300,-370);
+			
+			scene.add( lightBoxIronPillars );
+
+			var lightCircleGreen1 = creatCircleGeometry(20, 32,  0x32CD32);
+			lightCircleGreen1.position.set(-754,299,-320);
+			lightCircleGreen1.rotation.y = Math.PI /2 ;
+			scene.add( lightCircleGreen1 );
+
+			var lightCircleYellow1 = creatCircleGeometry(20, 32,  0xEEAD0E);
+			lightCircleYellow1.position.set(-754,299,-370);
+			lightCircleYellow1.rotation.y =  Math.PI  /2;
+			scene.add( lightCircleYellow1 );
+
+			var lightCircleRed1 = creatCircleGeometry(20, 32,  0xCD3333);
+			lightCircleRed1.position.set(-754,299,-420);
+			lightCircleRed1.rotation.y =  Math.PI /2;
+			scene.add( lightCircleRed1 );
+
+
+
+
+			//console.log(lightCircleRed.material.color );
+
+
+
+
+
+
+ 
+ 
+			//公交站台
+
+			var houseNo =	creatBox(50, 300, 900,'images/city/jinshu.jpg');
+			houseNo.position.set(300,10,1500);
+			scene.add(houseNo);
+
+			var houseNo =	creatBox(70, 600, 50,'images/city/jinshu.jpg');
+			houseNo.position.set(300,-100,1050);
+			scene.add(houseNo);
+
+
+			var houseNo =	creatBox(70, 600, 50,'images/city/jinshu.jpg');
+			houseNo.position.set(300,-100,1950);
+			scene.add(houseNo);
+
+			var houseNo =	creatBox(270, 50, 1100,'images/city/jinshu.jpg');
+			houseNo.position.set(300,210,1480);
+			scene.add(houseNo);
+
+			//站台广告
+			var bannerTexturemesh = creatFlootImg('images/city/banner.jpg' ,1,1,800,267, 10, 270,0);
+			bannerTexturemesh.rotation.y = - Math.PI /2;
+			bannerTexturemesh.position.z=1500;
+			scene.add( bannerTexturemesh );
+
+
+			//
+			var f1 = creatBox(1500, 1400, 1500,'images/city/jinshu.jpg');
+			f1.position.set(1900,200,1680);
+			scene.add( f1 );
+
+
+			
+
+			}//cityScene
+
+			function creatBox(px, py, pz,imgUrl){
+				//var boxGeometry = new THREE.CubeGeometry( 70, 170, 100 );
+				//var boxMaterial = new THREE.MeshBasicMaterial( { color: 0x9999ff} );
+				//var houseNo1 = new THREE.Mesh( houseNo1Geometry, houseNo1Material );
+
+				return new THREE.Mesh(
+					new THREE.CubeGeometry(px, py, pz), 
+					new THREE.MeshBasicMaterial({
+						map:  THREE.ImageUtils.loadTexture(imgUrl), 
+						//side: THREE.BackSide
+					})
+				);
+			}
+
+			function creatBoxGeometry(px, py, pz, color){
+				return new THREE.Mesh(
+					new THREE.CubeGeometry(px, py, pz),
+					new THREE.MeshBasicMaterial(  {color: color} ) 
+
+					);
+
+			}
+
+			function creatCircleGeometry(px, py, color){
+				return new THREE.Mesh(
+					new THREE.CircleGeometry(px, py),
+					new THREE.MeshBasicMaterial(  {color: color} ) 
+
+					);
+
+			}
+
+
+
+			//平面贴图素材
+			function creatFlootImg(imgUrl,repeatX,repeatY,wtx,wty,px,py,ry){
+
+
+						var creatTexture = loader.load( imgUrl );
+							creatTexture.wrapS = THREE.RepeatWrapping;
+							creatTexture.wrapT = THREE.RepeatWrapping;
+							creatTexture.repeat.set( repeatX, repeatY );
+							creatTexture.anisotropy = 16;
+
+						var creatMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: creatTexture } );
+
+						var creatTexturemesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( wtx, wty ), creatMaterial );
+							creatTexturemesh.position.y = px;
+							creatTexturemesh.position.x = py;
+							creatTexturemesh.rotation.x = ry ;
+
+
+						return creatTexturemesh;
+
+				}
+
+
+
+			
+
+
+			
+			var render = function () {
+				
+				controls.update();
+				requestAnimationFrame( render );
+				renderer.render(scene, camera);
+			}
+			
+
+			render();
+
+
+	});
+
+
+</script>
+
+</body>
+</html>
