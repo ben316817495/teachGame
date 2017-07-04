@@ -68,12 +68,14 @@ $(document).ready(function(){
 	}
 
 	var roleChoseState = function(game){
-		var loginBg,loginBg_star,loginBgyun;
+		var loginBg,loginBg_star,loginBgyun,loginBg2;
 		var longImg;
 		var cursors;
+		var rectA;
 		this.create = function(){
 
-
+			//game.physics.startSystem(Phaser.Physics.ARCADE);
+		
 
 			loginBg =game.add.tileSprite(0,130,50000,32,'gameLu');
 			loginBg.scale.set(0.6);
@@ -86,23 +88,39 @@ $(document).ready(function(){
 	    	longImg.animations.add('loadImg_up',[ 5, 6]);
  		    longImg.play('loadImg_away', 10, true);
  		    longImg.scale.set(0.5);
-
+ 		    //longImg.enableBody = true;
+ 		    	game.physics.enable(longImg,Phaser.Physics.ARCADE);
+ 		    	longImg.body.gravity = new Phaser.Point(0,300);
+ 		    	longImg.body.collideWorldBounds = true;
 
  		     cursors = game.input.keyboard.createCursorKeys();
+
+ 		      // loginBg2 = game.add.sprite(0, game.world.centerY+70,'gameLu');
+ 		      // game.physics.enable(loginBg2,Phaser.Physics.ARCADE);
+ 		      // loginBg2.body.immovable = true;
+
 
 		}
 		this.update = function() {
 			loginBg.tilePosition.x -=10;
 			loginBgyun.tilePosition.x -=2;
+			console.log(longImg.y)
+			 
 
 			if (cursors.down.isDown){
 				longImg.play('loadImg_down',10, true);
 			}else if(cursors.up.isDown){
+				if(longImg.y <70){
+			 		longImg.body.velocity.y=900;
+			  }else{
+			  	longImg.body.velocity.y=-150;
 				longImg.play('loadImg_up',10, true);
+			  }
+				
 			}else{
 				longImg.play('loadImg_away', 10, true);	
 			}
-			
+			 game.debug.geom(rectA, 'rgba(200,0,0,0.5)');
 			
 
 
