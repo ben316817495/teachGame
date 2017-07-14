@@ -111,9 +111,9 @@ $(document).ready(function(){
 				longImg.play('loadImg_down',10, true);
 			}else if(cursors.up.isDown){
 				if(longImg.y <70){
-			 		longImg.body.velocity.y=900;
+			 		longImg.body.velocity.y=1000;
 			  }else{
-			  	longImg.body.velocity.y=-150;
+			  	longImg.body.velocity.y=-180;
 				longImg.play('loadImg_up',10, true);
 			  }
 				
